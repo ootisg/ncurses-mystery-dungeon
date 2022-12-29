@@ -20,6 +20,7 @@ struct menu {
 
 typedef struct menu menu;
 
+menu* menu_init (void* loc, int x, int y, int width, int height, float depth);
 void menu_move_cursor (menu* m, int position);
 void menu_offset_cursor (menu* m, int offset);
 void menu_do_select (menu* m);

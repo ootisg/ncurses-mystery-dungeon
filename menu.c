@@ -2,6 +2,27 @@
 
 #include <ncurses.h>
 #include <string.h>
+#include <stdlib.h>
+
+menu* menu_init (void* loc, int x, int y, int width, int height, float depth) {
+	
+	//Initialize location/dimensions
+	menu* ptr = (menu*)loc;
+	ptr->x = x;
+	ptr->y = y;
+	ptr->width = width;
+	ptr->height = height;
+	ptr->depth = depth;
+
+	//Initialize lists
+	ptr->options_text = malloc (sizeof (char*) * (height - 2));
+	ptr->selection_funcs = malloc (sizeof (void*) * (height - 2));
+	ptr->selected_index = 0;
+
+	//Return the new menu
+	return ptr;
+
+}
 
 void menu_draw (menu* m) {
 
