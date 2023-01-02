@@ -2,6 +2,7 @@
 #include "menu.h"
 
 #include <stdlib.h>
+#include <ncurses.h>
 
 //Top-level menu
 menu* tlm;
@@ -19,9 +20,24 @@ void menus_init () {
 }
 
 void menus_dispatch_key (char c) {
+	
+	menu* m = tlm;
+	if (c == 'w') {
+		menu_offset_cursor (m, -1);
+	} else if (c == 'a') {
+		m->width--;
+	} else if (c == 's') {
+		menu_offset_cursor (m, 1);
+	} else if (c == 'd') {
+		m->width++;
+	} else if (c == 't') {
+		menu_do_select (m);
+	}
 
 }
 
 void menus_draw () {
+	
+	menu_draw (tlm);
 
 }
