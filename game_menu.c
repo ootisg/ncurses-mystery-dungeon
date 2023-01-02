@@ -6,10 +6,15 @@
 
 //Top-level menu
 menu* tlm;
+menu* menus;
+menu* sorted_menus;
+int num_menus;
 
 void menus_init () {
 
-	tlm = malloc (sizeof (menu));
+	menus = malloc (sizeof (menu) * MAX_NUM_MENUS);
+	tlm = &(menus[0]);
+	num_menus = 1;
 	menu_init (tlm, 2, 2, 12, 12, 0.0);
 	int i;
 	for (i = 0; i < 10; i++) {
@@ -39,5 +44,11 @@ void menus_dispatch_key (char c) {
 void menus_draw () {
 	
 	menu_draw (tlm);
+
+}
+
+void sort_menus () {
+
+
 
 }
