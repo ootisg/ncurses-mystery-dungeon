@@ -13,6 +13,7 @@ menu* menu_init (void* loc, int x, int y, int width, int height, float depth) {
 	ptr->width = width;
 	ptr->height = height;
 	ptr->depth = depth;
+	ptr->visible = 0;
 
 	//Initialize lists
 	ptr->options_text = malloc (sizeof (char*) * (height - 2));

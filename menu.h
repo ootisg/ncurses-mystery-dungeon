@@ -9,6 +9,7 @@ struct menu {
 	int width;
 	int height; //Menu bounds
 	float depth; //Depth for layering
+	char visible; //Boolean for visibility; default false
 
 	//Selection information
 	char** options_text; //Display text
