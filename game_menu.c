@@ -10,17 +10,27 @@ menu* menus;
 menu** sorted_menus;
 int num_menus;
 
+menu* item_menu;
+
 //Menu callback funcs
 void tlm_items_callback () {
 	menus[1].visible = 1;
 }
 
-void tlm_cancel_callback () {
-	tlm->visible = 0;
+void tlm_moves_callback () {
+	//TODO
 }
 
-void items_cancel_callback () {
-	menus[1].visible = 0;
+void tlm_team_callback () {
+	//TODO
+}
+
+void tlm_others_callback () {
+	//TODO
+}
+
+void tlm_ground_callback () {
+	//TODO
 }
 
 //Menu management funcs
@@ -67,29 +77,34 @@ void menus_init () {
 	//TLM
 	tlm = &(menus[0]);
 	num_menus = 1;
-	menu_init (tlm, 2, 2, 12, 12, 0.0);
+	menu_init (tlm, 2, 2, 12, 7, 0.0);
 	tlm->visible = 1;
 	int i;
-	for (i = 0; i < 10; i++) {
+	for (i = 0; i < 5; i++) {
 		tlm->options_text[i] = "--";
 		tlm->selection_funcs[i] = NULL;
 	}
-	tlm->options_text[0] = "Items";
-	tlm->options_text[9] = "Cancel";
-	tlm->selection_funcs[0] = tlm_items_callback;
-	tlm->selection_funcs[9] = tlm_cancel_callback;
+	tlm->options_text[0] = "Moves";
+	tlm->options_text[1] = "Items";
+	tlm->options_text[2] = "Team";
+	tlm->options_text[3] = "Others";
+	tlm->options_text[4] = "Ground";
+	tlm->selection_funcs[0] = tlm_moves_callback;
+	tlm->selection_funcs[1] = tlm_items_callback;
+	tlm->selection_funcs[2] = tlm_team_callback;
+	tlm->selection_funcs[3] = tlm_others_callback;
+	tlm->selection_funcs[4] = tlm_ground_callback;
 
 	//ITEM MENU
-	menu* m = &(menus[1]);
-	num_menus += 1;
-	menu_init (m, 4, 4, 12, 12, 1.0);
-	m->visible = 0;
+	item_menu = alloc_menu ();
+	menu_init (item_menu, 4, 4, 12, 12, 1.0);
+	item_menu->visible = 0;
 	for (i = 0; i < 10; i++) {
-		m->options_text[i] = "--";
-		m->selection_funcs[i] = NULL;
+		item_menu->options_text[i] = "--";
+		item_menu->selection_funcs[i] = NULL;
 	}
-	m->options_text[9] = "Cancel";
-	m->selection_funcs[9] = items_cancel_callback;
+
+	//
 
 }
 
